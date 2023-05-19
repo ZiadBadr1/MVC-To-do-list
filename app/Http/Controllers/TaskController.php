@@ -31,6 +31,17 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        // validation
+        $request->validate(
+            [
+                'title' => 'required|max:50',
+                'comment' => 'required'
+            ]
+        );
+
+
+
+
         // first method
 //        $task = new Task();
 //        $task->title = $request->title;
