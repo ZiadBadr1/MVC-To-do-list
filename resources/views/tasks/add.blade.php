@@ -20,9 +20,9 @@
 <form action="{{route("tasks.store")}}" method="post" class="p-3 d-flex flex-column mx-auto mt-5 shadow-lg rounded">
     @csrf
     <label>Title</label>
-    <input type="text" name="title" class="mb-4 rounded">
+    <input type="text" name="title" class="mb-4 rounded" required>
     <label>Comment</label>
-    <textarea name="comment"></textarea>
+    <textarea name="comment" required></textarea>
     <button class="btn bg-success w-50 text-white mx-auto mt-3">Add</button>
 </form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>

@@ -104,12 +104,18 @@ class TaskController extends Controller
 
     public function restore($id)
     {
-        Task::withTrashed()->where('id',$id)->  restore();
+        // First method
+        Task::withTrashed()->where('id',$id)->restore();
+        // Second method
+        // Task::onlyTrashed()->where('id',$id)->restore();
         return redirect()->back();
     }
     public function delete($id)
     {
+        // First method
         Task::withTrashed()->where('id',$id)->forceDelete();
+        // Second method
+        // Task::onlyTrashed()->where('id',$id)->forceDelete();
         return redirect()->back();
     }
 

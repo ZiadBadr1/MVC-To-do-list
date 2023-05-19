@@ -13,7 +13,7 @@
             border-bottom: 2px solid #0d6efd;
         }
     </style>
-    <title>Add Task</title>
+    <title>Edit Task</title>
 </head>
 <body style="margin-top: 150px" >
 <h3 style="margin-left: 700px">Edit Task</h3>
