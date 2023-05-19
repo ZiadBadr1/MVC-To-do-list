@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\storeTaskRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use function GuzzleHttp\Promise\all;
@@ -29,16 +30,17 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        // validation
-        $request->validate(
-            [
-                'title' => 'required|max:50',
-                'comment' => 'required'
-            ]
-        );
 
+    // in request validation the request it will be object from his request validation
+    public function store(storeTaskRequest $request)
+    {
+        // Controller Validation
+//        $request->validate(
+//            [
+//                'title' => 'required|max:50',
+//                'comment' => 'required'
+//            ]
+//        );
 
 
 

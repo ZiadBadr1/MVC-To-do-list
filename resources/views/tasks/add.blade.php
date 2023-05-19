@@ -35,14 +35,14 @@
 <form action="{{route("tasks.store")}}" method="post" class="p-3 d-flex flex-column mx-auto mt-5 shadow-lg rounded">
     @csrf
     <label>Title</label>
-    <input type="text" name="title" class="mb-4 rounded" required class="@error('title') is-invalid @enderror">
+    <input type="text" name="title" class="mb-4 rounded" value="{{old('title')}}" class="@error('title') is-invalid @enderror">
     {{-- Error Message if the title not found --}}
     @error('title')
     <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 
     <label>Comment</label>
-    <textarea name="comment" required class="@error('comment') is-invalid @enderror"></textarea>
+    <textarea name="comment"  class="@error('comment') is-invalid @enderror">{{old('comment')}}</textarea>
     {{-- Error Message if the comment not found --}}
     @error('comment')
     <div class="alert alert-danger">{{ $message }}</div>
