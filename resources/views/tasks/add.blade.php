@@ -14,10 +14,13 @@
         }
     </style>
     <title>Add Task</title>
-</head>
-<body style="margin-top: 150px" >
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-<h3 style="margin-left: 700px">Add Task</h3>
+</head>
+<body  >
+@include("layouts.Nav")
+
+<h3 style="margin-left: 700px;margin-top: 150px">Add Task</h3>
 <!-- /resources/views/post/create.blade.php -->
 
 
@@ -47,6 +50,8 @@
     @error('comment')
     <div class="alert alert-danger">{{ $message }}</div>
     @enderror
+    <input type="hidden" name="user_id"value="{{Auth::user()->id}}" >
+
     <button class="btn bg-success w-50 text-white mx-auto mt-3">Add</button>
 </form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>

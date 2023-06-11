@@ -13,4 +13,9 @@ class Task extends Model
     protected $fillable = ['title','comment'];
 
 //    protected $guarded =[] ---> that is mean accept all variable expect the variable in array
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
