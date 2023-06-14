@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\storeTaskRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use function GuzzleHttp\Promise\all;
 
 class TaskController extends Controller
@@ -13,14 +12,9 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        $tasks = Task::all()->where("user_id",Auth::user()->id);
+        $tasks = Task::all();
         //$tasks = Task::get ();
         return view('tasks.index',compact("tasks"));
     }
@@ -30,7 +24,6 @@ class TaskController extends Controller
      */
     public function create()
     {
-
         return view('tasks.add');
     }
 
@@ -39,7 +32,7 @@ class TaskController extends Controller
      */
 
     // in request validation the request it will be object from his request validation
-    public function store(storeTaskRequest $request )
+    public function store(storeTaskRequest $request)
     {
         // Controller Validation
 //        $request->validate(
@@ -52,20 +45,19 @@ class TaskController extends Controller
 
 
         // first method
-        $task = new Task();
-        $task->title = $request->title;
-        $task->comment = $request->comment;
-        $task->user_id = $request->user_id ;
-        $task->save();
+//        $task = new Task();
+//        $task->title = $request->title;
+//        $task->comment = $request->comment;
+//        $task->save();
 //        return response("added");
 
         // second method
-//        Task::create(
-//            [
-//                'title' => $request->title ,
-//                "comment" => $request->comment,
-//            ]
-//        );
+        Task::create(
+            [
+                'title' => $request->title ,
+                "comment" => $request->comment
+            ]
+        );
         // third method
         // this method work only if the name of field in table same that in input field (title --> title not title --> my_title)
 //        Task::create(

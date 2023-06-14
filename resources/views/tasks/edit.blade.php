@@ -14,13 +14,9 @@
         }
     </style>
     <title>Edit Task</title>
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
 </head>
-<body  >
-@include("layouts.Nav")
-
-<h3 style="margin-left: 700px;margin-top: 150px">Edit Task</h3>
+<body style="margin-top: 150px" >
+<h3 style="margin-left: 700px">Edit Task</h3>
 <form action="{{route("tasks.update",$task->id)}}" method="post" class="p-3 d-flex flex-column mx-auto mt-5 shadow-lg rounded">
     @csrf
     @method('PUT')
