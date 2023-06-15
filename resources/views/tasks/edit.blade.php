@@ -15,15 +15,26 @@
     </style>
     <title>Edit Task</title>
 </head>
-<body style="margin-top: 150px" >
-<h3 style="margin-left: 700px">Edit Task</h3>
+<body  >
+@include("layouts.nav")
+<h3 style="margin-left: 700px;margin-top: 150px" >Edit Task</h3>
 <form action="{{route("tasks.update",$task->id)}}" method="post" class="p-3 d-flex flex-column mx-auto mt-5 shadow-lg rounded">
     @csrf
     @method('PUT')
+    @csrf
     <label>Title</label>
-    <input type="text" name="title" class="mb-4 rounded" value="{{$task->title}}">
+    <input type="text" name="title" class="mb-4 rounded" value="{{$task->title}}" class="@error('title') is-invalid @enderror">
+    {{-- Error Message if the title not found --}}
+    @error('title')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+
     <label>Comment</label>
-    <textarea name="comment">{{$task->comment}}</textarea>
+    <textarea name="comment"  class="@error('comment') is-invalid @enderror">{{$task->comment}}</textarea>
+    {{-- Error Message if the comment not found --}}
+    @error('comment')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <button class="btn bg-success w-50 text-white mx-auto mt-3">Update</button>
 </form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>

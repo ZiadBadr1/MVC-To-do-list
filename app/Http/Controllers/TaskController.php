@@ -5,16 +5,23 @@ namespace App\Http\Controllers;
 use App\Http\Requests\storeTaskRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use function GuzzleHttp\Promise\all;
 
 class TaskController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::all()->where("user_id",Auth::user()->id);
         //$tasks = Task::get ();
         return view('tasks.index',compact("tasks"));
     }
@@ -45,19 +52,20 @@ class TaskController extends Controller
 
 
         // first method
-//        $task = new Task();
-//        $task->title = $request->title;
-//        $task->comment = $request->comment;
-//        $task->save();
+        $task = new Task();
+        $task->title = $request->title;
+        $task->comment = $request->comment;
+        $task->user_id = $request->user_id;
+        $task->save();
 //        return response("added");
 
         // second method
-        Task::create(
-            [
-                'title' => $request->title ,
-                "comment" => $request->comment
-            ]
-        );
+//        Task::create(
+//            [
+//                'title' => $request->title ,
+//                "comment" => $request->comment
+//            ]
+//        );
         // third method
         // this method work only if the name of field in table same that in input field (title --> title not title --> my_title)
 //        Task::create(
@@ -87,7 +95,7 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request ,$id)
+    public function update(storeTaskRequest $request ,$id)
     {
         $task = Task::findorFail($id);
         // first method
@@ -135,6 +143,6 @@ class TaskController extends Controller
     public function showDeletedTask()
     {
         $tasks = Task::onlyTrashed()->get();
-        return view("tasks.SoftDelete",compact('tasks'));
+        return view("tasks.SoftDelete",compact("tasks") );
     }
 }

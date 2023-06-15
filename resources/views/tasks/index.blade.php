@@ -3,8 +3,11 @@
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <title>All Tasks</title>
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
 </head>
 <body >
+@include("layouts.nav")
 <br>
 <h2 style="text-align: center">Your Tasks</h2>
 <table class="table">
@@ -20,7 +23,7 @@
     <tbody>
     @foreach($tasks as $task)
         <tr>
-            <th scope="row">{{$task->id}}</th>
+            <th scope="row">#</th>
             <td>{{$task->title}}</td>
             <td>{{$task->comment}}</td>
             <td>
